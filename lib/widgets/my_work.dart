@@ -12,7 +12,7 @@ class MyWorkWidget extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
         child: Row(
           children: [
             Container(
@@ -24,7 +24,7 @@ class MyWorkWidget extends StatelessWidget {
               child: Icon(
                 icon,
                 color: Colors.white,
-                size: 20,
+                size: 21,
               ),
             ),
             SizedBox(width: 20),

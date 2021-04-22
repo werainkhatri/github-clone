@@ -7,6 +7,7 @@ class C {
 
   static Color titleColor = Color(0xFFFBFBFC);
   static Color textColor = Color(0xFFBFC1C9);
+  static Color unhighlightedTextColor = Color(0xFF9194A1);
 
   static Color dividerColor = Color(0xFF323337);
 
