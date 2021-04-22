@@ -1,107 +1,146 @@
 import 'package:flutter/material.dart';
+import 'package:github_clone/widgets/title.dart';
 
 import 'constants.dart';
+import 'widgets/my_work.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: C.background,
-      body: SafeArea(
-        child: Column(
-          children: [
-            AppBar(
-              backgroundColor: C.background,
-              title: Text(
-                "Home",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+    return SafeArea(
+      child: Column(
+        children: [
+          AppBar(
+            backgroundColor: C.background,
+            title: TitleWidget(title: "Home"),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.search,
+                  color: Theme.of(context).accentColor,
                 ),
+                onPressed: () {},
               ),
-              actions: [
-                IconButton(
-                  icon: Icon(
-                    Icons.search,
-                    color: Theme.of(context).accentColor,
-                  ),
-                  onPressed: () {},
+              IconButton(
+                icon: Icon(
+                  Icons.add_circle_outline,
+                  color: Theme.of(context).accentColor,
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.add_circle_outline,
-                    color: Theme.of(context).accentColor,
-                  ),
-                  onPressed: () {},
+                onPressed: () {},
+              ),
+            ],
+          ),
+          Expanded(
+            child: ListView(
+              children: [
+                SubtitleWidget("My Work"),
+                SizedBox(height: 10),
+                MyWorkWidget(
+                  title: "Issues",
+                  icon: Icons.error_outline,
+                  color: Color(0xFF40D663),
                 ),
-              ],
-            ),
-            Expanded(
-              child: ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 0, 8),
-                    child: Text(
-                      "My Work",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
+                MyWorkWidget(
+                  title: "Pull Requests",
+                  icon: Icons.merge_type_outlined,
+                  color: Color(0xFF2E8FFF),
+                ),
+                MyWorkWidget(
+                  title: "Discussiong",
+                  icon: Icons.message_outlined,
+                  color: Color(0xFF7548C7),
+                ),
+                MyWorkWidget(
+                  title: "Repositories",
+                  icon: Icons.book_outlined,
+                  color: Color(0xFF41434E),
+                ),
+                MyWorkWidget(
+                  title: "Organizations",
+                  icon: Icons.home_work_outlined,
+                  color: Color(0xFFFF8A38),
+                ),
+                SizedBox(height: 10),
+                Divider(height: 1, thickness: 1, color: C.dividerColor),
+                SizedBox(height: 10),
+                SubtitleWidget("Favorites"),
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
+                  child: Text(
+                    'Add favorite repositories for quick access at any time,'
+                    ' without having to search',
+                    style: TextStyle(color: C.textColor, fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                          (states) => C.bgButton),
+                    ),
+                    onPressed: () {},
+                    child: Container(
+                      color: C.background,
+                      child: Text(
+                        "ADD FAVORITES",
+                        style: TextStyle(color: C.accent),
                       ),
                     ),
                   ),
-                  MyWorkField(
-                    title: "Issues",
-                    icon: Icons.error_outline,
-                    color: Color(0xFF40D663),
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(height: 20),
+                Divider(height: 1, thickness: 1, color: C.dividerColor),
+                SizedBox(height: 10),
+                SubtitleWidget("Recent"),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class MyWorkField extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Color color;
-  const MyWorkField({Key key, this.title, this.icon, this.color})
-      : super(key: key);
+class RecentWidget extends StatelessWidget {
+  final String user, repo, number, title, time, count;
+  final Image image;
+  final bool isIssue;
+  const RecentWidget({
+    this.user,
+    this.repo,
+    this.number,
+    this.title,
+    this.time,
+    this.count,
+    this.image,
+    this.isIssue,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: Row(
+    return Column(
+      children: [
+        Row(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.all(Radius.circular(4)),
-              ),
-              padding: const EdgeInsets.all(6.0),
+            Expanded(
               child: Icon(
-                icon,
-                color: Colors.white,
-                size: 20,
+                isIssue ? Icons.error_outline : Icons.merge_type_outlined,
+                color: C.issuePRIconColor,
               ),
-            ),
-            SizedBox(width: 20),
-            Text(
-              title,
-              style: TextStyle(color: Colors.white, fontSize: 16),
             )
           ],
         ),
-      ),
+        Row(),
+        Row(),
+      ],
     );
   }
 }

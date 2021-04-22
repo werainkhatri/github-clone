@@ -12,7 +12,52 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(accentColor: C.accent, backgroundColor: C.background),
       title: kIsWeb ? 'Github Web' : 'Github Mobile',
-      home: HomeScreen(),
+      home: MenuScreen(),
+    );
+  }
+}
+
+class MenuScreen extends StatefulWidget {
+  MenuScreen({Key key}) : super(key: key);
+
+  @override
+  _MenuScreenState createState() => _MenuScreenState();
+}
+
+class _MenuScreenState extends State<MenuScreen> {
+  int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = 0;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: C.background,
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: C.background,
+        currentIndex: _currentIndex,
+        selectedIconTheme: IconThemeData(color: C.accent),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_filled),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_filled),
+            label: "Sample",
+          ),
+        ],
+        onTap: (value) {
+          setState(() {
+            _currentIndex = value;
+          });
+        },
+      ),
+      body: [HomeScreen(), Container()][_currentIndex],
     );
   }
 }
