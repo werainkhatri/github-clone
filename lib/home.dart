@@ -2,8 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:github_clone/widgets/title.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'app_state.dart';
 import 'constants.dart';
 import 'widgets/my_work.dart';
 
@@ -16,7 +18,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   RefreshController _refreshController;
-  int _count;
 
   final List<Widget> _recentItems =
       C.notifications.sublist(0, C.notifications.length ~/ 2);
@@ -25,21 +26,19 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _refreshController = RefreshController(initialRefresh: false);
-    _count = 0;
   }
 
   void _onRefresh() async {
+    AppState state = Provider.of<AppState>(context, listen: false);
     // monitor network fetch
     await Future.delayed(Duration(milliseconds: 500));
-    if (mounted)
-      setState(() {
-        _count++;
-      });
+    if (mounted && state.homeState < _recentItems.length) state.homeState++;
     _refreshController.refreshCompleted();
   }
 
   @override
   Widget build(BuildContext context) {
+    int _count = Provider.of<AppState>(context).homeState;
     return SafeArea(
       child: Column(
         children: [
@@ -126,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: 10),
                   SubtitleWidget("Recent"), // !
                   SizedBox(height: 10),
-                  ..._recentItems.sublist(0, min(_count, _recentItems.length)),
+                  ..._recentItems.sublist(0, _count),
                 ],
               ),
             ),

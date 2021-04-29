@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:github_clone/app_state.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'constants.dart';
@@ -13,27 +15,24 @@ class NotificationsScreen extends StatefulWidget {
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
   RefreshController _refreshController;
-  int _count;
 
   @override
   void initState() {
     super.initState();
     _refreshController = RefreshController(initialRefresh: false);
-    _count = C.notifications.length ~/ 2;
   }
 
   void _onRefresh() async {
+    AppState state = Provider.of<AppState>(context, listen: false);
     // monitor network fetch
     await Future.delayed(Duration(milliseconds: 500));
-    if (mounted && _count > 0)
-      setState(() {
-        _count--;
-      });
+    if (mounted && state.notificationState > 0) state.notificationState--;
     _refreshController.refreshCompleted();
   }
 
   @override
   Widget build(BuildContext context) {
+    int _count = Provider.of<AppState>(context).notificationState;
     return SafeArea(
       child: Column(
         children: [

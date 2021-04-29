@@ -5,17 +5,22 @@ import 'package:github_clone/explore.dart';
 import 'package:github_clone/home.dart';
 import 'package:github_clone/notifications.dart';
 import 'package:github_clone/profile.dart';
+import 'package:github_clone/app_state.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(accentColor: C.accent, backgroundColor: C.background),
-      title: kIsWeb ? 'Github Web' : 'Github Mobile',
-      home: MenuScreen(),
+    return ChangeNotifierProvider(
+      create: (_) => AppState(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(accentColor: C.accent, backgroundColor: C.background),
+        title: kIsWeb ? 'Github Web' : 'Github Mobile',
+        home: MenuScreen(),
+      ),
     );
   }
 }
@@ -35,7 +40,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   void initState() {
     super.initState();
-    _currentIndex = 1;
+    _currentIndex = 0;
   }
 
   @override
