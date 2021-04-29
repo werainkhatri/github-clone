@@ -1,13 +1,11 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:github_clone/widgets/title.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'app_state.dart';
-import 'constants.dart';
-import 'widgets/my_work.dart';
+import '../app_state.dart';
+import '../constants.dart';
+import '../widgets/my_work.dart';
+import '../widgets/title.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);

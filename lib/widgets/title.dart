@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:github_clone/constants.dart';
+
+import '../constants.dart';
 
 class TitleWidget extends StatelessWidget {
   final String title;

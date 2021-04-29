@@ -1,12 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:github_clone/constants.dart';
-import 'package:github_clone/explore.dart';
-import 'package:github_clone/home.dart';
-import 'package:github_clone/notifications.dart';
-import 'package:github_clone/profile.dart';
-import 'package:github_clone/app_state.dart';
 import 'package:provider/provider.dart';
+
+import 'app_state.dart';
+import 'constants.dart';
+import 'tabs/explore.dart';
+import 'tabs/home.dart';
+import 'tabs/notifications.dart';
+import 'tabs/profile.dart';
 
 void main() => runApp(MyApp());
 

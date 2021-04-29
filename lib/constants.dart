@@ -17,6 +17,15 @@ class C {
   static Color issuePROpenColor = Color(0xFF32B24F);
   static Color issuePRClosedColor = Color(0xFF7548C7);
 
+  static const String imageURL =
+      "https://avatars.githubusercontent.com/u/44755140?v=4";
+  static const String workingEmoteURL =
+      "https://github.githubassets.com/images/icons/emoji/unicode/1f468-1f4bb.png";
+  static const String bio =
+      "3rd Year CSE Undergraduate @ NIT Raipur | Technical Manager @ECellNitrr | Flutter and Android Developer";
+  static const String readme =
+      "I'm a Mobile Application Developer, doing my Bachelor's in Computer Science and Engineering from NIT Raipur. Here to contribute to open source. I like Math and Minecraft";
+
   static List<Widget> notifications = [
     NotificationItem(
       user: "werainkhatri",

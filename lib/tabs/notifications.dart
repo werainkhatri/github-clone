@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:github_clone/app_state.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'constants.dart';
-import 'widgets/title.dart';
+import '../app_state.dart';
+import '../constants.dart';
+import '../widgets/title.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({Key key}) : super(key: key);
