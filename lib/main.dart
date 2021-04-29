@@ -1,7 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:github_clone/constants.dart';
+import 'package:github_clone/explore.dart';
 import 'package:github_clone/home.dart';
+import 'package:github_clone/notifications.dart';
+import 'package:github_clone/profile.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,11 +29,13 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   int _currentIndex;
+  final bottomNavBarKey = UniqueKey();
+  final homeScreenKey = UniqueKey();
 
   @override
   void initState() {
     super.initState();
-    _currentIndex = 0;
+    _currentIndex = 1;
   }
 
   @override
@@ -38,17 +43,29 @@ class _MenuScreenState extends State<MenuScreen> {
     return Scaffold(
       backgroundColor: C.background,
       bottomNavigationBar: BottomNavigationBar(
+        key: bottomNavBarKey,
+        type: BottomNavigationBarType.fixed,
         backgroundColor: C.background,
         currentIndex: _currentIndex,
-        selectedIconTheme: IconThemeData(color: C.accent),
+        selectedItemColor: C.accent,
+        unselectedItemColor: C.unhighlightedIconColor,
+        showUnselectedLabels: true,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: "Sample",
+            icon: Icon(Icons.notifications_outlined),
+            label: "Notifications",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore_outlined),
+            label: "Explore",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle_outlined),
+            label: "Profile",
           ),
         ],
         onTap: (value) {
@@ -57,7 +74,12 @@ class _MenuScreenState extends State<MenuScreen> {
           });
         },
       ),
-      body: [HomeScreen(), Container()][_currentIndex],
+      body: [
+        HomeScreen(key: homeScreenKey),
+        NotificationsScreen(),
+        ExploreScreen(),
+        ProfileScreen(),
+      ][_currentIndex],
     );
   }
 }
