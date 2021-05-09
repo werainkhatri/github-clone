@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:github_clone/tabs/profile_sections/pinned.dart';
 
+import 'models/programming_languages.dart';
 import 'widgets/notification_item.dart';
 
 class C {
@@ -149,6 +151,39 @@ class C {
       isIssue: false,
       isOpen: false,
       comment: "moderator commented",
+    ),
+  ];
+
+  static const List<PinnedRepositoryCard> pinnedCards = [
+    PinnedRepositoryCard(
+      "github-clone",
+      "",
+      0,
+      ProgrammingLanguage.dart,
+    ),
+    PinnedRepositoryCard(
+      "teesco-app",
+      "Teesco - A Volunteer Management System",
+      1,
+      ProgrammingLanguage.dart,
+    ),
+    PinnedRepositoryCard(
+      "ECellApp",
+      "Official repository of E-Cell Android application",
+      2,
+      ProgrammingLanguage.java,
+    ),
+    PinnedRepositoryCard(
+      "FloodRelief",
+      "Version Beta 2019",
+      2,
+      ProgrammingLanguage.javascript,
+    ),
+    PinnedRepositoryCard(
+      "contexualcards",
+      "Version Beta 2019",
+      0,
+      ProgrammingLanguage.kotlin,
     ),
   ];
 }

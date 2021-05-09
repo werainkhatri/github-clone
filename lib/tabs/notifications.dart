@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../app_state.dart';
+import '../models/app_state.dart';
 import '../constants.dart';
 import '../widgets/title.dart';
 
